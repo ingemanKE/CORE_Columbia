@@ -8,28 +8,29 @@ output:
 ---
 
 #### Time series of counts of Chinook Salmon at Ice Harbor dam from 1962 with sea lion male counts and Southern Resident Killer Whales
-```{r message=FALSE}
+
+```r
 rm(list = ls())
 
 library(dplyr)
 library(gridExtra)
 library(ggplot2)
-
 ```
 
 
-```{r}
+
+```r
 # call in data
 fall <- read.csv("data/IHR_Fall_Chinook.csv")
 spr <- read.csv("data/IHR_SprSum_Chinook.csv")
 PDO <- read.csv("data/PDO.csv")
 lion <- read.csv("data/sealion.csv")
 killer <- read.csv("data/SRKW.csv")
- 
 ```
 
 
-```{r message=FALSE}
+
+```r
 # combine data sets
 fall <- fall %>% 
   rename(fall.adult = adult) %>% 
@@ -45,14 +46,14 @@ dat <- full_join(fall, spr, by = "year") %>%
   left_join(., lion, by = c("year" = "Year")) %>% 
   left_join(., killer, by = c("year" = "Year")) %>% 
   left_join(., PDO, by = c("year" = "Year"))
-
 ```
 
 ## Plot TS
 
 Plotting predators and prey on separate axes for now
 
-```{r warning=FALSE}
+
+```r
 # plot time series
 s <- 1.2
 chinook <- ggplot(dat) +
@@ -82,9 +83,23 @@ srkw <- ggplot(dat) +
   theme(axis.text.y=element_blank())
 
 chinook
-lions
-srkw
+```
 
+![](CORE_ts_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+
+```r
+lions
+```
+
+![](CORE_ts_files/figure-html/unnamed-chunk-4-2.png)<!-- -->
+
+```r
+srkw
+```
+
+![](CORE_ts_files/figure-html/unnamed-chunk-4-3.png)<!-- -->
+
+```r
 # CORE_ts <- arrangeGrob(chinook, lions, srkw, nrow = 3) 
 
 # arrangeGrob(chinook, lions, srkw, nrow = 3)
