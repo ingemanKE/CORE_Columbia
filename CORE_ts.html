@@ -404,6 +404,10 @@ dat &lt;- full_join(fall, spr, by = &quot;year&quot;) %&gt;%
   left_join(., lion, by = c(&quot;year&quot; = &quot;Year&quot;)) %&gt;% 
   left_join(., killer, by = c(&quot;year&quot; = &quot;Year&quot;)) %&gt;% 
   left_join(., PDO, by = c(&quot;year&quot; = &quot;Year&quot;))</code></pre>
+</div>
+<div id="plot-ts" class="section level2">
+<h2>Plot TS</h2>
+<p>Plotting predators and prey on separate axes for now</p>
 <pre class="r"><code># plot time series
 s &lt;- 1.2
 chinook &lt;- ggplot(dat) +

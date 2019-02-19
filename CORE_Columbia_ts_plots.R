@@ -21,7 +21,7 @@ dat <- full_join(fall, spr, by = "year") %>%
   left_join(., killer, by = c("year" = "Year")) %>% 
   left_join(., PDO, by = c("year" = "Year"))
 
-s <- 1.5
+s <- 1.2
 chinook <- ggplot(dat) +
   geom_line(aes(x=year, y=spr.adult), col = "#669900", size = s) +
   geom_line(aes(x=year, y=fall.adult), col = "#CC3300", size = s) +

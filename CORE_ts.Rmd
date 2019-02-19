@@ -46,6 +46,10 @@ dat <- full_join(fall, spr, by = "year") %>%
 
 ```
 
+## Plot TS
+
+Plotting predators and prey on separate axes for now
+
 ```{r warning=FALSE}
 # plot time series
 s <- 1.2
