@@ -2,7 +2,9 @@
 title: "CORE_EDM_ts_annual_spp_dam"
 author: "Kurt Ingeman"
 date: "2/22/2019"
-output: html_document
+output: 
+  html_document: 
+    keep_md: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -62,6 +64,21 @@ bon.chi <- td %>%
 bon.chi$year <- as.numeric(bon.chi$year)
 
 dygraph(bon.chi) %>%
+  dyOptions(labelsUTC = TRUE, fillGraph=TRUE, fillAlpha=0.1, drawGrid = FALSE, colors="#D8AE5A") %>%
+  dyRangeSelector() %>%
+  dyCrosshair(direction = "vertical") %>%
+  dyHighlight(highlightCircleSize = 5, highlightSeriesBackgroundAlpha = 0.2, hideOnMouseOut = FALSE)  %>%
+  dyRoller(rollPeriod = 1)
+```
+
+```{r}
+# just Bonneville Steelhead unclipped
+bon.stlw <- td %>% 
+  filter(species == "unclip_steelhead" & dam == "bon")
+
+bon.stlw$year <- as.numeric(bon.stlw$year)
+
+dygraph(bon.stlw) %>%
   dyOptions(labelsUTC = TRUE, fillGraph=TRUE, fillAlpha=0.1, drawGrid = FALSE, colors="#D8AE5A") %>%
   dyRangeSelector() %>%
   dyCrosshair(direction = "vertical") %>%
